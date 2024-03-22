@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://player/player.gd" id="1_pl0cc"]
 [ext_resource type="PackedScene" uid="uid://djbvjj4um2ncc" path="res://components/hitboxcomponent.tscn" id="2_17oa4"]
 [ext_resource type="PackedScene" uid="uid://c676h04pnhmxr" path="res://components/healthcomponent.tscn" id="3_wegqf"]
-[ext_resource type="PackedScene" uid="uid://b4v5ystdpphvs" path="res://leveldesign/spawndetector.tscn" id="4_kmrwq"]
+[ext_resource type="PackedScene" uid="uid://b4v5ystdpphvs" path="res://leveldesign/util/spawndetector.tscn" id="4_kmrwq"]
 
 [sub_resource type="Animation" id="Animation_mx82t"]
 resource_name = "take_damage"

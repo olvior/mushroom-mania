@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://b4v5ystdpphvs"]
 
-[ext_resource type="Script" path="res://leveldesign/spawndetector.gd" id="1_hito7"]
+[ext_resource type="Script" path="res://leveldesign/util/spawndetector.gd" id="1_hito7"]
 
 [node name="Area2D" type="Area2D"]
 collision_layer = 0

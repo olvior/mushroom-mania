@@ -1,10 +1,10 @@
 [gd_scene load_steps=11 format=3 uid="uid://cxxqmodp0e4b8"]
 
-[ext_resource type="Shader" path="res://GUIZIPP/GUI/menu/TITLE.gdshader" id="1_2gbwj"]
-[ext_resource type="Shader" path="res://GUIZIPP/GUI/menu/menu.gdshader" id="1_odhyo"]
-[ext_resource type="Theme" uid="uid://c28mk6nbduqga" path="res://GUIZIPP/GUI/menu/menutheme.tres" id="2_yu4tu"]
-[ext_resource type="Texture2D" uid="uid://ij82orep0f8c" path="res://GUIZIPP/GUI/menu/noisesquare.tres" id="3_hoocv"]
-[ext_resource type="Texture2D" uid="uid://d1bglbdqbse8y" path="res://GUIZIPP/GUI/menu/small_noise.tres" id="4_13rrg"]
+[ext_resource type="Shader" path="res://GUI/mainmenu/TITLE.gdshader" id="1_2gbwj"]
+[ext_resource type="Shader" path="res://GUI/mainmenu/menu.gdshader" id="1_odhyo"]
+[ext_resource type="Theme" uid="uid://c28mk6nbduqga" path="res://GUI/mainmenu/menutheme.tres" id="2_yu4tu"]
+[ext_resource type="Texture2D" uid="uid://ij82orep0f8c" path="res://GUI/mainmenu/noisesquare.tres" id="3_hoocv"]
+[ext_resource type="Texture2D" uid="uid://d1bglbdqbse8y" path="res://GUI/mainmenu/small_noise.tres" id="4_13rrg"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2ef0k"]
 shader = ExtResource("1_2gbwj")

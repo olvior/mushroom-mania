@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="mushroom-mania"
-run/main_scene="res://GUIZIPP/GUI/menu/GUI.tscn"
+run/main_scene="res://GUI/mainmenu/GUI.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://tilemap.svg"
 
@@ -31,13 +31,17 @@ window/name="mushroom-mania"
 [file_customization]
 
 folder_colors={
+"res://GUI/": "green",
 "res://art/": "red",
 "res://components/": "orange",
 "res://enemies/": "yellow",
 "res://enemies/test/": "orange",
-"res://leveldesign/": "green",
-"res://misc/": "teal",
-"res://player/": "blue",
+"res://leveldesign/": "teal",
+"res://leveldesign/areas/": "green",
+"res://leveldesign/util/": "teal",
+"res://misc/": "blue",
+"res://player/": "purple",
+"res://save_data/": "pink",
 "res://states/": "blue"
 }
 

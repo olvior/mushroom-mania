@@ -1,9 +1,9 @@
 [gd_scene load_steps=19 format=3 uid="uid://dosujao4td2re"]
 
 [ext_resource type="Texture2D" uid="uid://hrnidevt6tb4" path="res://art/quicktilemapa.png" id="1_j2r6a"]
-[ext_resource type="Texture2D" uid="uid://bxey6tacxsi76" path="res://tilemap.svg" id="2_8qfvr"]
-[ext_resource type="PackedScene" uid="uid://mhde166tqnkv" path="res://leveldesign/room.tscn" id="3_imysg"]
-[ext_resource type="PackedScene" uid="uid://cntyuqtcfn8vb" path="res://leveldesign/spawnarea.tscn" id="4_tqp4e"]
+[ext_resource type="Texture2D" uid="uid://bxey6tacxsi76" path="res://art/tilemap.svg" id="2_8qfvr"]
+[ext_resource type="PackedScene" uid="uid://mhde166tqnkv" path="res://leveldesign/util/room.tscn" id="3_imysg"]
+[ext_resource type="PackedScene" uid="uid://cntyuqtcfn8vb" path="res://leveldesign/util/spawnarea.tscn" id="4_tqp4e"]
 [ext_resource type="PackedScene" uid="uid://bty1s8g7rbq7b" path="res://player/player.tscn" id="5_kcrmp"]
 [ext_resource type="Script" path="res://player/camera.gd" id="6_83sij"]
 [ext_resource type="PackedScene" uid="uid://cl65jlhe7ug8d" path="res://player/hud.tscn" id="7_onjt3"]
