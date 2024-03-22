@@ -1,12 +1,10 @@
 extends Camera2D
 
-@onready var block_size = Global.block_size
-
 func set_limits(room : Room):
-	print(room.extent, room.pos)
-	var origin = room.pos * block_size
+	print(room.extent, room.pos, room.name, room.pos)
+	var origin = room.pos * room.block_size
 	
-	var extent = room.extent * block_size / 4
+	var extent = room.extent * room.block_size / 2
 	
 	self.limit_left = origin.x - extent.x
 	self.limit_right = origin.x + extent.x
