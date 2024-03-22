@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://djbvjj4um2ncc"]
+
+[ext_resource type="Script" path="res://components/hitboxcomponent.gd" id="1_1h1vm"]
+
+[node name="Area2D" type="Area2D"]
+collision_layer = 0
+collision_mask = 10
+script = ExtResource("1_1h1vm")
+
+[node name="Invincibility Timer" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

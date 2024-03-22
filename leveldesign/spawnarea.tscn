@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cntyuqtcfn8vb"]
+
+[ext_resource type="Script" path="res://leveldesign/spawnarea.gd" id="1_dlnc8"]
+
+[node name="Area2D" type="Area2D"]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("1_dlnc8")

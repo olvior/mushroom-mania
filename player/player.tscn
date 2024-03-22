@@ -1,0 +1,133 @@
+[gd_scene load_steps=12 format=3 uid="uid://bty1s8g7rbq7b"]
+
+[ext_resource type="Script" path="res://player/player.gd" id="1_pl0cc"]
+[ext_resource type="PackedScene" uid="uid://djbvjj4um2ncc" path="res://components/hitboxcomponent.tscn" id="2_17oa4"]
+[ext_resource type="PackedScene" uid="uid://c676h04pnhmxr" path="res://components/healthcomponent.tscn" id="3_wegqf"]
+[ext_resource type="PackedScene" uid="uid://b4v5ystdpphvs" path="res://leveldesign/spawndetector.tscn" id="4_kmrwq"]
+
+[sub_resource type="Animation" id="Animation_mx82t"]
+resource_name = "take_damage"
+length = 0.1
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [-0.174533, 0.174533, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wgktt"]
+_data = {
+"take_damage": SubResource("Animation_mx82t")
+}
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_lxfbu"]
+radial_segments = 4
+rings = 16
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yoaig"]
+radius = 15.0
+height = 63.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ec8u4"]
+size = Vector2(32, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xnne8"]
+size = Vector2(25, 50)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_ata4l"]
+b = Vector2(0, 0)
+
+[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("dash_timer", "dashing_timer", "coyote_timer", "wall_cast_right", "wall_cast_left", "debug_label", "spawn_detector") groups=["player"]]
+collision_layer = 0
+script = ExtResource("1_pl0cc")
+dash_timer = NodePath("Dash cooldown")
+dashing_timer = NodePath("Dash length")
+coyote_timer = NodePath("Coyote Timer")
+wall_cast_right = NodePath("Wall cast right")
+wall_cast_left = NodePath("Wall cast left")
+debug_label = NodePath("debug")
+spawn_detector = NodePath("Spawn detector")
+metadata/_edit_vertical_guides_ = []
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_wgktt")
+}
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+scale = Vector2(32, 32)
+mesh = SubResource("CapsuleMesh_lxfbu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_yoaig")
+
+[node name="Coyote Timer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="Dash cooldown" type="Timer" parent="."]
+wait_time = 0.4
+
+[node name="Dash length" type="Timer" parent="."]
+wait_time = 0.25
+
+[node name="Wall cast left" type="RayCast2D" parent="."]
+target_position = Vector2(17, 0)
+collide_with_areas = true
+
+[node name="Wall cast right" type="RayCast2D" parent="."]
+target_position = Vector2(-17, 0)
+collide_with_areas = true
+
+[node name="debug" type="Label" parent="."]
+offset_left = -17.0
+offset_top = -48.0
+offset_right = 34.0
+offset_bottom = 42.0
+theme_override_font_sizes/font_size = 12
+text = "12231"
+metadata/_edit_use_anchors_ = true
+
+[node name="Spawn detector" parent="." node_paths=PackedStringArray("parent") instance=ExtResource("4_kmrwq")]
+collision_mask = 16
+parent = NodePath("..")
+bottom_diff = Vector2(2.08165e-12, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Spawn detector"]
+shape = SubResource("RectangleShape2D_ec8u4")
+debug_color = Color(0, 0.619608, 0.564706, 0.419608)
+
+[node name="Hitbox component" parent="." node_paths=PackedStringArray("health_component", "parent", "animation_player") instance=ExtResource("2_17oa4")]
+health_component = NodePath("../Health component")
+static_hazard_damage = 1
+parent = NodePath("..")
+inv_cooldown = 0.3
+animation_player = NodePath("../AnimationPlayer")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox component"]
+shape = SubResource("RectangleShape2D_xnne8")
+debug_color = Color(1, 0, 0, 0.388235)
+
+[node name="Health component" parent="." node_paths=PackedStringArray("parent") instance=ExtResource("3_wegqf")]
+parent = NodePath("..")
+max_health = 4
+display = true
+
+[node name="Room detector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Room detector"]
+shape = SubResource("SegmentShape2D_ata4l")
+debug_color = Color(0, 0, 0, 0.572549)
+
+[connection signal="timeout" from="Dash cooldown" to="." method="_on_dash_timer_timeout"]
+[connection signal="timeout" from="Dash length" to="." method="_on_dashing_timeout"]
+[connection signal="area_entered" from="Room detector" to="." method="_on_room_detector_area_entered"]

@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://mhde166tqnkv"]
+
+[ext_resource type="Script" path="res://leveldesign/room.gd" id="1_xl8g0"]
+
+[node name="Room" type="Area2D"]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_xl8g0")
+extent = Vector2(32, 18)
