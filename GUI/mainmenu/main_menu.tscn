@@ -1,0 +1,101 @@
+[gd_scene load_steps=13 format=3 uid="uid://cxxqmodp0e4b8"]
+
+[ext_resource type="Script" path="res://GUI/mainmenu/main_menu.gd" id="1_8gwmt"]
+[ext_resource type="PackedScene" uid="uid://cg2fmc0gpu7ih" path="res://leveldesign/areas/test.tscn" id="2_uc2q3"]
+[ext_resource type="Shader" path="res://GUI/mainmenu/TITLE.gdshader" id="3_bw6cn"]
+[ext_resource type="Theme" uid="uid://c28mk6nbduqga" path="res://GUI/mainmenu/menutheme.tres" id="4_db078"]
+[ext_resource type="Shader" path="res://GUI/mainmenu/menu.gdshader" id="5_4mg3l"]
+[ext_resource type="Texture2D" uid="uid://ij82orep0f8c" path="res://GUI/mainmenu/noisesquare.tres" id="6_w3xwe"]
+[ext_resource type="Texture2D" uid="uid://d1bglbdqbse8y" path="res://GUI/mainmenu/small_noise.tres" id="7_7fgrb"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2ef0k"]
+shader = ExtResource("3_bw6cn")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pub6c"]
+shader = ExtResource("3_bw6cn")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_x11i3"]
+shader = ExtResource("3_bw6cn")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kvg66"]
+shader = ExtResource("3_bw6cn")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_64o67"]
+shader = ExtResource("5_4mg3l")
+shader_parameter/scroll = Vector2(0, 0.1)
+shader_parameter/scroll2 = Vector2(0.05, 0.01)
+shader_parameter/noise = ExtResource("6_w3xwe")
+shader_parameter/noise2 = ExtResource("7_7fgrb")
+
+[node name="GUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8gwmt")
+main_scene = ExtResource("2_uc2q3")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Row 1" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="MarginContainer/Row 1"]
+material = SubResource("ShaderMaterial_2ef0k")
+layout_mode = 2
+theme_override_font_sizes/font_size = 96
+text = "Mushroom-Mania"
+
+[node name="New game" type="Button" parent="MarginContainer/Row 1"]
+material = SubResource("ShaderMaterial_pub6c")
+layout_mode = 2
+focus_mode = 0
+theme = ExtResource("4_db078")
+text = "New Game"
+
+[node name="Settings" type="Button" parent="MarginContainer/Row 1"]
+material = SubResource("ShaderMaterial_x11i3")
+layout_mode = 2
+focus_mode = 0
+theme = ExtResource("4_db078")
+text = "Settings"
+
+[node name="Open last save" type="Button" parent="MarginContainer/Row 1"]
+material = SubResource("ShaderMaterial_kvg66")
+layout_mode = 2
+focus_mode = 0
+theme = ExtResource("4_db078")
+text = "Continue"
+
+[node name="Quit" type="Button" parent="MarginContainer/Row 1"]
+material = SubResource("ShaderMaterial_kvg66")
+layout_mode = 2
+focus_mode = 0
+theme = ExtResource("4_db078")
+text = "Exit Game"
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer"]
+z_index = -3
+texture_repeat = 2
+material = SubResource("ShaderMaterial_64o67")
+layout_mode = 2
+mouse_filter = 2
+
+[connection signal="button_up" from="MarginContainer/Row 1/New game" to="." method="_on_new_game_button_up"]
+[connection signal="button_up" from="MarginContainer/Row 1/Settings" to="." method="_on_settings_button_up"]
+[connection signal="button_up" from="MarginContainer/Row 1/Open last save" to="." method="_on_open_last_save_button_up"]
+[connection signal="button_up" from="MarginContainer/Row 1/Quit" to="." method="_on_quit_button_up"]
