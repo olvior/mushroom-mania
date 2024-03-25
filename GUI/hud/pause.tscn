@@ -1,0 +1,67 @@
+[gd_scene load_steps=5 format=3 uid="uid://dt8vj2pw5blpo"]
+
+[ext_resource type="Shader" path="res://GUI/mainmenu/TITLE.gdshader" id="1_84t0v"]
+[ext_resource type="Script" path="res://GUI/hud/pause.gd" id="1_kyk07"]
+[ext_resource type="Theme" uid="uid://c28mk6nbduqga" path="res://GUI/mainmenu/menutheme.tres" id="2_21exs"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b4gvv"]
+shader = ExtResource("1_84t0v")
+
+[node name="pause" type="Control"]
+process_mode = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kyk07")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 480
+theme_override_constants/margin_top = 270
+theme_override_constants/margin_right = 480
+theme_override_constants/margin_bottom = 270
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 46
+text = "Game Paused"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_right = 40
+
+[node name="Continue" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2"]
+material = SubResource("ShaderMaterial_b4gvv")
+layout_mode = 2
+focus_mode = 0
+theme = ExtResource("2_21exs")
+text = "Coninue"
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_right = 40
+
+[node name="Quit" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer"]
+material = SubResource("ShaderMaterial_b4gvv")
+layout_mode = 2
+focus_mode = 0
+theme = ExtResource("2_21exs")
+text = "Exit Game"
+
+[connection signal="button_up" from="MarginContainer/VBoxContainer/MarginContainer2/Continue" to="." method="_on_continue_button_up"]
+[connection signal="button_up" from="MarginContainer/VBoxContainer/MarginContainer/Quit" to="." method="_on_quit_button_up"]
