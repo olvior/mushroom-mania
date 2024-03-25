@@ -63,7 +63,7 @@ var last_direction = direction
 var attack_scene = preload("res://player/player_attack.tscn")
 
 
-@export var camera : Camera2D
+@onready var camera : Camera2D = get_node("Camera2D")
 
 @onready var dash_timer : Timer = get_node("Dash cooldown")
 @onready var dashing_timer : Timer = get_node("Dash length")
@@ -284,11 +284,16 @@ func _on_room_detector_area_entered(area):
 	if area is Room:
 		camera.set_limits(area)
 	
+	
 	elif area is AreaExit:
+		print("bbb")
 		Global.change_area(area)
+	
+	else:
+		print("ccc")
 
 func die():
-	self.queue_free()
+	print("ded")
 
 func static_damage():
 	spawn_detector.go_to_pos()

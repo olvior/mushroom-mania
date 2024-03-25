@@ -1,8 +1,9 @@
 extends Control
 
 
-@export var player : CharacterBody2D
-@export var hboxcont : HBoxContainer
+var player : CharacterBody2D
+
+@onready var hboxcont : HBoxContainer = get_node("MargainContainer/MarginContainer/HBoxContainer")
 
 @export var textureon : Texture2D
 @export var textureoff : Texture2D
@@ -10,6 +11,9 @@ extends Control
 var r : TextureRect
 
 var old_player_health : int
+
+func _ready():
+	player = Global.player
 
 func _process(_delta):
 	if not old_player_health == player.current_health:

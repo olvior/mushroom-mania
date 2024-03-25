@@ -7,9 +7,10 @@ var accel = 300
 var max_speed = 500
 var direction : int = 1
 var block_size : int = Global.block_size # 32 right now
+
 @onready var player : CharacterBody2D = Global.player
 @onready var animation_player : AnimationPlayer = get_node("AnimationPlayer")
-@onready var tile_map : TileMap = Global.tilemap
+@onready var tile_map : TileMap = get_parent().tilemap
 @onready var run_timer : Timer = get_node("Run")
 @onready var run_cooldown_timer : Timer = get_node("RunCooldown")
 

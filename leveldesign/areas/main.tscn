@@ -1,12 +1,9 @@
-[gd_scene load_steps=18 format=3 uid="uid://dosujao4td2re"]
+[gd_scene load_steps=15 format=3 uid="uid://dosujao4td2re"]
 
 [ext_resource type="Script" path="res://leveldesign/parts/game_area.gd" id="1_mmxf3"]
 [ext_resource type="TileSet" uid="uid://bcvju3o4jb0f7" path="res://leveldesign/parts/tilesetguess.tres" id="2_v4pqd"]
 [ext_resource type="PackedScene" uid="uid://mhde166tqnkv" path="res://leveldesign/parts/room.tscn" id="3_igxcv"]
 [ext_resource type="PackedScene" uid="uid://cntyuqtcfn8vb" path="res://leveldesign/parts/spawnarea.tscn" id="4_1yr3q"]
-[ext_resource type="PackedScene" uid="uid://bty1s8g7rbq7b" path="res://player/player.tscn" id="5_f72wl"]
-[ext_resource type="Script" path="res://player/camera.gd" id="6_an5m2"]
-[ext_resource type="PackedScene" uid="uid://cl65jlhe7ug8d" path="res://player/hud.tscn" id="7_bs0ug"]
 [ext_resource type="PackedScene" uid="uid://jadcj6b4c4ra" path="res://enemies/test/enemy.tscn" id="8_4bev2"]
 [ext_resource type="PackedScene" uid="uid://e0nl02o840n2" path="res://leveldesign/parts/exit.tscn" id="9_36dki"]
 
@@ -34,9 +31,10 @@ size = Vector2(128, 67)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d4e03"]
 size = Vector2(32, 90)
 
-[node name="main" type="Node2D" groups=["areas"]]
+[node name="main" type="Node2D" node_paths=PackedStringArray("tilemap") groups=["areas"]]
 script = ExtResource("1_mmxf3")
 area_name = &"main"
+tilemap = NodePath("TileMap")
 
 [node name="TileMap" type="TileMap" parent="." groups=["tilemap"]]
 texture_filter = 1
@@ -122,26 +120,6 @@ debug_color = Color(0, 0.619608, 0.564706, 0.419608)
 [node name="Node2D" type="Node2D" parent="Room6/Spawn area2"]
 position = Vector2(0, 34)
 
-[node name="Player" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("5_f72wl")]
-position = Vector2(964, 293)
-camera = NodePath("Camera2D")
-
-[node name="Camera2D" type="Camera2D" parent="Player"]
-zoom = Vector2(1.25, 1.25)
-drag_horizontal_enabled = true
-drag_vertical_enabled = true
-drag_left_margin = 0.08
-drag_top_margin = 0.16
-drag_right_margin = 0.08
-drag_bottom_margin = 0.16
-editor_draw_drag_margin = true
-script = ExtResource("6_an5m2")
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="Control" parent="CanvasLayer" node_paths=PackedStringArray("player") instance=ExtResource("7_bs0ug")]
-player = NodePath("../../Player")
-
 [node name="Enemt" parent="." instance=ExtResource("8_4bev2")]
 position = Vector2(-3479, -698)
 
@@ -151,11 +129,12 @@ position = Vector2(-1035, -485)
 [node name="enemyr3" parent="." instance=ExtResource("8_4bev2")]
 position = Vector2(-16, 33)
 
-[node name="exit_bl" parent="." instance=ExtResource("9_36dki")]
+[node name="exit_bl" parent="." node_paths=PackedStringArray("spawn_loc") instance=ExtResource("9_36dki")]
 position = Vector2(1488, 514)
 name_id = &"exit_bl"
 connects_to_area = &"test_area"
 connects_to_loc = &"top_left"
+spawn_loc = NodePath("Node2D")
 
 [node name="Node2D" type="Node2D" parent="exit_bl"]
 position = Vector2(-16, -2)

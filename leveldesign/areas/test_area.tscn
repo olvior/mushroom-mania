@@ -23,9 +23,10 @@ size = Vector2(1344, 1216)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hffw8"]
 size = Vector2(32, 92.67)
 
-[node name="test_area" type="Node2D" groups=["areas"]]
+[node name="test_area" type="Node2D" node_paths=PackedStringArray("tilemap") groups=["areas"]]
 script = ExtResource("1_f55an")
 area_name = &"test_area"
+tilemap = NodePath("TileMap")
 
 [node name="TileMap" type="TileMap" parent="." groups=["tilemap"]]
 texture_filter = 1
@@ -83,7 +84,7 @@ shape = SubResource("RectangleShape2D_p8fhs")
 position = Vector2(-3888, -1949)
 name_id = &"top_left"
 connects_to_area = &"main"
-connects_to_loc = &"start"
+connects_to_loc = &"exit_bl"
 spawn_loc = NodePath("spawn_loc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="top_left"]

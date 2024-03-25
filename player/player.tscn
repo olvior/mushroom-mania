@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://bty1s8g7rbq7b"]
+[gd_scene load_steps=13 format=3 uid="uid://bty1s8g7rbq7b"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_pl0cc"]
 [ext_resource type="PackedScene" uid="uid://djbvjj4um2ncc" path="res://components/hitboxcomponent.tscn" id="2_17oa4"]
+[ext_resource type="PackedScene" uid="uid://d8js15jjybvx" path="res://player/camera.tscn" id="2_ntngw"]
 [ext_resource type="PackedScene" uid="uid://c676h04pnhmxr" path="res://components/healthcomponent.tscn" id="3_wegqf"]
 [ext_resource type="PackedScene" uid="uid://b4v5ystdpphvs" path="res://leveldesign/parts/spawndetector.tscn" id="4_kmrwq"]
 
@@ -48,6 +49,8 @@ b = Vector2(0, 0)
 collision_layer = 0
 script = ExtResource("1_pl0cc")
 metadata/_edit_vertical_guides_ = []
+
+[node name="Camera2D" parent="." instance=ExtResource("2_ntngw")]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -115,7 +118,7 @@ display = true
 
 [node name="Room detector" type="Area2D" parent="."]
 collision_layer = 0
-collision_mask = 4
+collision_mask = 36
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Room detector"]
 shape = SubResource("SegmentShape2D_ata4l")
