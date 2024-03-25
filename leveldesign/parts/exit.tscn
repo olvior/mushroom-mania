@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://e0nl02o840n2"]
+
+[ext_resource type="Script" path="res://leveldesign/parts/exit.gd" id="1_lxwiu"]
+
+[node name="exit" type="Area2D" groups=["exitd"]]
+collision_layer = 32
+collision_mask = 0
+script = ExtResource("1_lxwiu")
+connects_to_area = null
+connects_to_loc = null

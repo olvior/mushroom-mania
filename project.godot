@@ -24,7 +24,6 @@ Global="*res://misc/global.gd"
 window/size/viewport_width=1280
 window/size/viewport_height=720
 window/size/mode=3
-window/size/resizable=false
 window/stretch/mode="canvas_items"
 window/name="mushroom-mania"
 
@@ -38,7 +37,7 @@ folder_colors={
 "res://enemies/test/": "orange",
 "res://leveldesign/": "teal",
 "res://leveldesign/areas/": "green",
-"res://leveldesign/util/": "teal",
+"res://leveldesign/parts/": "teal",
 "res://misc/": "blue",
 "res://player/": "purple",
 "res://save_data/": "pink",
@@ -96,3 +95,4 @@ attack={
 2d_physics/layer_3="rooms"
 2d_physics/layer_4="static damage"
 2d_physics/layer_5="spawn"
+2d_physics/layer_6="area exits"

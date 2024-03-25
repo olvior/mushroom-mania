@@ -1,7 +1,7 @@
 [gd_resource type="TileSet" load_steps=5 format=3 uid="uid://bcvju3o4jb0f7"]
 
 [ext_resource type="Texture2D" uid="uid://hrnidevt6tb4" path="res://art/quicktilemapa.png" id="1_f31p2"]
-[ext_resource type="Texture2D" uid="uid://bxey6tacxsi76" path="res://tilemap.svg" id="2_isftu"]
+[ext_resource type="Texture2D" uid="uid://bxey6tacxsi76" path="res://tilemap.svg" id="2_hpfod"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6qjob"]
 texture = ExtResource("1_f31p2")
@@ -1567,7 +1567,7 @@ texture_region_size = Vector2i(32, 32)
 19:9/0/physics_layer_1/angular_velocity = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4byck"]
-texture = ExtResource("2_isftu")
+texture = ExtResource("2_hpfod")
 texture_region_size = Vector2i(32, 32)
 3:0/0 = 0
 3:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)

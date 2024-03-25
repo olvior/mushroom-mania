@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://player/player.gd" id="1_pl0cc"]
 [ext_resource type="PackedScene" uid="uid://djbvjj4um2ncc" path="res://components/hitboxcomponent.tscn" id="2_17oa4"]
 [ext_resource type="PackedScene" uid="uid://c676h04pnhmxr" path="res://components/healthcomponent.tscn" id="3_wegqf"]
-[ext_resource type="PackedScene" uid="uid://b4v5ystdpphvs" path="res://leveldesign/util/spawndetector.tscn" id="4_kmrwq"]
+[ext_resource type="PackedScene" uid="uid://b4v5ystdpphvs" path="res://leveldesign/parts/spawndetector.tscn" id="4_kmrwq"]
 
 [sub_resource type="Animation" id="Animation_mx82t"]
 resource_name = "take_damage"
@@ -44,16 +44,9 @@ size = Vector2(25, 50)
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_ata4l"]
 b = Vector2(0, 0)
 
-[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("dash_timer", "dashing_timer", "coyote_timer", "wall_cast_right", "wall_cast_left", "debug_label", "spawn_detector") groups=["player"]]
+[node name="CharacterBody2D" type="CharacterBody2D" groups=["player"]]
 collision_layer = 0
 script = ExtResource("1_pl0cc")
-dash_timer = NodePath("Dash cooldown")
-dashing_timer = NodePath("Dash length")
-coyote_timer = NodePath("Coyote Timer")
-wall_cast_right = NodePath("Wall cast right")
-wall_cast_left = NodePath("Wall cast left")
-debug_label = NodePath("debug")
-spawn_detector = NodePath("Spawn detector")
 metadata/_edit_vertical_guides_ = []
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

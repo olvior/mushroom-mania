@@ -65,16 +65,16 @@ var attack_scene = preload("res://player/player_attack.tscn")
 
 @export var camera : Camera2D
 
-@export var dash_timer : Timer 
-@export var dashing_timer : Timer
-@export var coyote_timer : Timer
+@onready var dash_timer : Timer = get_node("Dash cooldown")
+@onready var dashing_timer : Timer = get_node("Dash length")
+@onready var coyote_timer : Timer = get_node("Coyote Timer")
 
-@export var wall_cast_right : RayCast2D
-@export var wall_cast_left : RayCast2D
+@onready var wall_cast_right : RayCast2D = get_node("Wall cast right")
+@onready var wall_cast_left : RayCast2D = get_node("Wall cast left")
 
-@export var debug_label : Label
+@onready var debug_label : Label = get_node("debug")
 
-@export var spawn_detector : SpawnDetector
+@onready var spawn_detector : SpawnDetector = get_node("Spawn detector")
 
 func floor_check():
 	if is_on_floor():
@@ -283,6 +283,9 @@ func _physics_process(delta):
 func _on_room_detector_area_entered(area):
 	if area is Room:
 		camera.set_limits(area)
+	
+	elif area is AreaExit:
+		Global.change_area(area)
 
 func die():
 	self.queue_free()
