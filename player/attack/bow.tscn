@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dxardsgqose0l"]
+
+[ext_resource type="Script" path="res://player/attack/bow.gd" id="1_d6b63"]
+[ext_resource type="Texture2D" uid="uid://vo5gdiwlixhc" path="res://art/testbow.png" id="2_j0huc"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_d6b63")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(16, 0)
+texture = ExtResource("2_j0huc")
+
+[node name="cooldown" type="Timer" parent="."]
+wait_time = 0.25
+one_shot = true

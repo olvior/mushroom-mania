@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://r2omwjrqkdpy"]
+
+[ext_resource type="Script" path="res://player/attack/arrow.gd" id="1_hxt54"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_jl4ne"]
+size = Vector3(16, 2, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_krure"]
+size = Vector2(16, 2)
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_hxt54")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+mesh = SubResource("BoxMesh_jl4ne")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_krure")
