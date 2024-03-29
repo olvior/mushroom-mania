@@ -28,7 +28,9 @@ func _process(_delta):
 			apply_kb()
 			create_arrow()
 
-
+func reset_cooldown():
+	_on_cooldown_timeout()
+	cooldown.stop()
 
 func _on_cooldown_timeout():
 	sprite.texture = with_arrow

@@ -60,6 +60,10 @@ var max_health
 var melee_damage : int = 5
 var kb = Vector2i(100, -100)
 var last_direction = direction
+@onready var attack_cooldown : Timer = get_node("Attack cooldown")
+
+# bow
+@onready var bow = get_node("Bow")
 
 # preload scenes
 var attack_scene = preload("res://player/attack/player_attack.tscn")
@@ -216,7 +220,12 @@ func _physics_process(delta):
 	
 	#attack
 	if Input.is_action_just_pressed("attack"):
-		create_attack()
+		if attack_cooldown.time_left:
+			pass
+		else:
+			create_attack()
+			attack_cooldown.start()
+			bow.reset_cooldown()
 	
 	#basic tests
 	
