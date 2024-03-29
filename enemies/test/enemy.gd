@@ -1,5 +1,4 @@
 extends CharacterBody2D
-class_name TestEnemy
 
 var target_pos : Vector2
 
