@@ -55,12 +55,12 @@ var max_health
 
 
 # melee attack
-var melee_damage : int = 10
+var melee_damage : int = 5
 var kb = Vector2i(100, -100)
 var last_direction = direction
 
 # preload scenes
-var attack_scene = preload("res://player/player_attack.tscn")
+var attack_scene = preload("res://player/attack/player_attack.tscn")
 
 
 @onready var camera : Camera2D = get_node("Camera2D")
@@ -83,7 +83,7 @@ func floor_check():
 		has_fallen = false
 		
 		if abs(velocity.x) > max_speed:
-			velocity.x /= 1.01
+			velocity.x /= 1.05
 		
 	if not is_on_floor():
 		if not has_fallen and y_floor < self.position.y and not on_wall:
@@ -276,8 +276,6 @@ func _physics_process(delta):
 	
 	move_and_slide()
 	debug_label.text = str(velocity)
-	#print(velocity)
-	#next: attacks, enemies
 
 
 func _on_room_detector_area_entered(area):
@@ -306,7 +304,7 @@ func create_attack():
 	
 	var dir = -90 if up else last_direction * 90 - 90
 	
-	var new_attack : melee_attack = attack_scene.instantiate()
+	var new_attack : MeleeAttack = attack_scene.instantiate()
 	
 	new_attack.damage = melee_damage
 	new_attack.time_left = 0.1

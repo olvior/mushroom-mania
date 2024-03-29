@@ -1,5 +1,5 @@
 extends Area2D
-class_name melee_attack
+class_name MeleeAttack
 
 var animator : AnimationPlayer
 var damage : int

@@ -44,9 +44,11 @@ func _physics_process(delta):
 				max_speed = 200
 	
 	if run_timer.time_left > 0:
-		animation_player.play("run_right")
+		if not animation_player.current_animation:
+			animation_player.play("run_right")
 	else:
-		animation_player.play("wandering")
+		if not animation_player.current_animation:
+			animation_player.play("wandering")
 		max_speed = 7
 		
 		# direction_change_logic

@@ -20,5 +20,5 @@ func _on_open_last_save_button_up():
 
 
 func _on_quit_button_up():
-	pass # Replace with function body.
+	get_tree().quit()
 

@@ -60,12 +60,12 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 96
 text = "Mushroom-Mania"
 
-[node name="New game" type="Button" parent="MarginContainer/Row 1"]
+[node name="newgame" type="Button" parent="MarginContainer/Row 1"]
 material = SubResource("ShaderMaterial_pub6c")
 layout_mode = 2
 focus_mode = 0
 theme = ExtResource("4_db078")
-text = "New Game"
+text = "New Game "
 
 [node name="Settings" type="Button" parent="MarginContainer/Row 1"]
 material = SubResource("ShaderMaterial_x11i3")
@@ -95,7 +95,7 @@ material = SubResource("ShaderMaterial_64o67")
 layout_mode = 2
 mouse_filter = 2
 
-[connection signal="button_up" from="MarginContainer/Row 1/New game" to="." method="_on_new_game_button_up"]
+[connection signal="button_up" from="MarginContainer/Row 1/newgame" to="." method="_on_new_game_button_up"]
 [connection signal="button_up" from="MarginContainer/Row 1/Settings" to="." method="_on_settings_button_up"]
 [connection signal="button_up" from="MarginContainer/Row 1/Open last save" to="." method="_on_open_last_save_button_up"]
 [connection signal="button_up" from="MarginContainer/Row 1/Quit" to="." method="_on_quit_button_up"]

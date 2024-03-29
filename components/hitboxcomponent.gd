@@ -15,7 +15,7 @@ func _ready():
 
 func damage(raw_amount):
 	health_component.damage(raw_amount)
-	print("ouch")
+	
 	if animation_player:
 		animation_player.play("take_damage")
 
@@ -24,7 +24,7 @@ func _on_area_entered(area):
 	if invincibility_timer.time_left == 0:
 		var attacker
 		var damage_amount
-		if area is melee_attack:
+		if area is MeleeAttack:
 			attacker = area.attacker
 			damage_amount = area.damage
 		else:
@@ -44,8 +44,17 @@ func _on_area_entered(area):
 		invincibility_timer.start()
 
 
-func _on_body_entered(_body):
-	self.damage(static_hazard_damage)
+func _on_body_entered(body):
 	
-	if parent.has_method("static_damage"):
-		parent.static_damage()
+	if body is Arrow:
+		if body.attacker != self.get_parent():
+			self.damage(body.damage) # do some kb stuff next
+			body.queue_free()
+		
+		
+	else:
+		self.damage(static_hazard_damage)
+		
+		print(body)
+		if parent.has_method("static_damage"):
+			parent.static_damage()
