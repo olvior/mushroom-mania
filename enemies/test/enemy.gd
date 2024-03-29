@@ -34,7 +34,7 @@ func _physics_process(delta):
 	else:
 		velocity.x -= (velocity.x - max_speed) * 5 * delta
 	
-	if diff.x < 6 * block_size and diff.y < 1 * block_size:
+	if diff.x < 10 * block_size and diff.y < 2 * block_size:
 		if run_timer.time_left == 0:
 			if run_cooldown_timer.time_left == 0:
 				run_timer.start()
