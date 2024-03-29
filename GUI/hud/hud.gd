@@ -5,9 +5,14 @@ var player : CharacterBody2D
 
 @onready var hboxcont : HBoxContainer = get_node("MargainContainer/MarginContainer/HBoxContainer")
 
+@export_category("HUD Variables")
 @export var pause : PackedScene
+
+@export_group("Health")
 @export var textureon : Texture2D
+@export var texturehalf : Texture2D
 @export var textureoff : Texture2D
+
 var pause_menu
 
 var r : TextureRect
@@ -38,7 +43,9 @@ func update(h):
 	
 	for rdx in rects.size():
 		r = rects[rdx]
-		if rdx < h:
+		if rdx * 2 + 1 < h:
 			r.texture = textureon
+		elif rdx * 2 + 1 == h:
+			r.texture = texturehalf
 		else:
 			r.texture = textureoff

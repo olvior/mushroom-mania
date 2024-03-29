@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cl65jlhe7ug8d"]
+[gd_scene load_steps=6 format=3 uid="uid://cl65jlhe7ug8d"]
 
 [ext_resource type="Texture2D" uid="uid://dhty2ac5legp4" path="res://art/heart.png" id="1_7bwhk"]
 [ext_resource type="Script" path="res://GUI/hud/hud.gd" id="1_gr46x"]
 [ext_resource type="PackedScene" uid="uid://dt8vj2pw5blpo" path="res://GUI/hud/pause.tscn" id="2_cqmid"]
 [ext_resource type="Texture2D" uid="uid://c3cusj6bdypwa" path="res://art/heartempty.png" id="3_u47i8"]
+[ext_resource type="Texture2D" uid="uid://dhkbxhtpltv4x" path="res://art/hearthalf.png" id="5_otfbt"]
 
 [node name="Control" type="Control"]
 process_mode = 3
@@ -18,6 +19,7 @@ size_flags_vertical = 3
 script = ExtResource("1_gr46x")
 pause = ExtResource("2_cqmid")
 textureon = ExtResource("1_7bwhk")
+texturehalf = ExtResource("5_otfbt")
 textureoff = ExtResource("3_u47i8")
 
 [node name="MargainContainer" type="MarginContainer" parent="."]
