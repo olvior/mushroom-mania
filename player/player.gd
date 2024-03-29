@@ -26,6 +26,7 @@ var dash_refreshed = true
 #wall climbing
 var wall_terminal_velocity = 100
 var on_wall = false
+var was_on_wall = on_wall
 var wall_jump_side_force = 500
 
 #buffer
@@ -44,6 +45,7 @@ var buffer_dict_run = {
 
 #coyote
 var was_on_floor = false
+@onready var wall_coyote_timer : Timer = get_node("Wall coyote timer")
 
 #other
 var time = 0
@@ -217,7 +219,12 @@ func _physics_process(delta):
 		create_attack()
 	
 	#basic tests
+	
+	if was_on_wall:
+		coyote_timer.start()
+	
 	on_wall = is_touching_wall()
+	was_on_wall = on_wall
 	can_dash = check_can_dash()
 	if on_wall:
 		jumps = max_jumps - 1
@@ -244,7 +251,7 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("jump") and not on_wall:
 		if jumps >= 1 or coyote_timer.time_left > 0:
 			jump()
-	if Input.is_action_just_pressed("jump") and on_wall:
+	if Input.is_action_just_pressed("jump") and on_wall or wall_coyote_timer.time_left:
 		wall_jump(-1 if wall_cast_left.is_colliding() else 1)
 	elif Input.is_action_just_released("jump"):
 		cancel_jump = true
@@ -300,16 +307,13 @@ func take_kb(dir):
 	self.velocity = Vector2i(kb.x * dir, kb.y)
 
 func create_attack():
-	var up = Input.is_action_pressed("up")
-	
-	var dir = -90 if up else last_direction * 90 - 90
-	
 	var new_attack : MeleeAttack = attack_scene.instantiate()
 	
 	new_attack.damage = melee_damage
 	new_attack.time_left = 0.1
 	new_attack.attacker = self
 	
-	new_attack.rotation = deg_to_rad(dir)
+	var diff = get_global_mouse_position() - self.get_global_position()
+	new_attack.rotation = diff.angle()
 	
 	self.add_child(new_attack)
