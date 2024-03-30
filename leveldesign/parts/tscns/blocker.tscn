@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dcdxo3lf6coni"]
+
+[ext_resource type="Script" path="res://leveldesign/parts/scripts/blocker.gd" id="1_13wl2"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_lbula"]
+
+[node name="StaticBody2D" type="StaticBody2D"]
+collision_layer = 0
+collision_mask = 0
+physics_material_override = SubResource("PhysicsMaterial_lbula")
+script = ExtResource("1_13wl2")
