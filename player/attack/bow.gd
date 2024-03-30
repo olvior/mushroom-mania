@@ -48,7 +48,7 @@ func create_arrow():
 	var new_arrow : Arrow = arrow_scene.instantiate()
 	new_arrow.velocity = diff.normalized() * 30
 	new_arrow.rotation = diff.angle()
-	new_arrow.position = self.get_global_position() + Vector2(cos(diff.angle()), sin(diff.angle())) * 48 
+	new_arrow.position = self.get_global_position() + diff.normalized() * 48 
 	
 	new_arrow.setup(5, self.get_parent(), 100)
 	

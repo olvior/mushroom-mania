@@ -18,16 +18,14 @@ var kb = Vector2(300, -100)
 func die():
 	self.queue_free()
 
-func take_kb(dir):
+func on_hit():
 	run_timer.stop()
 	run_cooldown_timer.start()
-	velocity.x = kb.x * dir
-	velocity.y = kb.y
 
 func _physics_process(delta):
 	var diff = abs(player.position - self.position)
 	
-	velocity.y += 300 * delta
+	velocity.y += 600 * delta
 	
 	if abs(velocity.x) < max_speed:
 		velocity.x += accel * direction * delta

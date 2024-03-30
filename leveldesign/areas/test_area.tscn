@@ -69,7 +69,6 @@ debug_color = Color(0.815686, 0, 0.972549, 0.419608)
 
 [node name="Blocker" parent="Room6/Boss spawner" node_paths=PackedStringArray("collision_shape") instance=ExtResource("6_h8s72")]
 position = Vector2(162, 55)
-collision_mask = 0
 collision_shape = NodePath("CollisionShape2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Room6/Boss spawner/Blocker"]

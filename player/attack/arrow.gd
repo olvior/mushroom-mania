@@ -7,17 +7,19 @@ var collision : KinematicCollision2D
 
 var damage : int
 var attacker : CharacterBody2D
-var knockback_strength : float
+var kb_strength : float
+var kb_direction : Vector2
 
-func setup(damage_local : int, attacker_local : CharacterBody2D, knockback_strength_local : float):
-	damage = damage_local
-	attacker = attacker_local
-	knockback_strength = knockback_strength_local
+func setup(damagel : int, attackerl : CharacterBody2D, kb_strengthl : float):
+	damage = damagel
+	attacker = attackerl
+	kb_strength = kb_strengthl
 
 func _physics_process(delta):
 	velocity /= 1.02
 	velocity.y += 10 * delta
 	self.rotation = velocity.angle()
+	kb_direction = velocity.normalized()
 	
 	collision = move_and_collide(velocity)
 	

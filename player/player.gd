@@ -58,8 +58,8 @@ var max_health
 
 # melee attack
 var melee_damage : int = 5
-var kb = Vector2i(100, -100)
 var last_direction = direction
+
 @onready var attack_cooldown : Timer = get_node("Attack cooldown")
 
 # bow
@@ -225,7 +225,6 @@ func _physics_process(delta):
 		else:
 			create_attack()
 			attack_cooldown.start()
-			bow.reset_cooldown()
 	
 	#basic tests
 	
@@ -298,7 +297,6 @@ func _on_room_detector_area_entered(area):
 	if area is Room:
 		camera.set_limits(area)
 	
-	
 	elif area is AreaExit:
 		print("bbb")
 		Global.change_area(area)
@@ -312,17 +310,20 @@ func die():
 func static_damage():
 	spawn_detector.go_to_pos()
 
-func take_kb(dir):
-	self.velocity = Vector2i(kb.x * dir, kb.y)
 
 func create_attack():
 	var new_attack : MeleeAttack = attack_scene.instantiate()
+	var diff = get_global_mouse_position() - self.get_global_position()
 	
 	new_attack.damage = melee_damage
 	new_attack.time_left = 0.1
 	new_attack.attacker = self
+	new_attack.kb_strength = 300
+	new_attack.kb_direction = diff.normalized()
 	
-	var diff = get_global_mouse_position() - self.get_global_position()
 	new_attack.rotation = diff.angle()
 	
 	self.add_child(new_attack)
+
+func on_melee_hit():
+	bow.reset_cooldown()
