@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://djbvjj4um2ncc" path="res://components/hitboxcomponent.tscn" id="2_17oa4"]
 [ext_resource type="PackedScene" uid="uid://d8js15jjybvx" path="res://player/camera.tscn" id="2_ntngw"]
 [ext_resource type="PackedScene" uid="uid://c676h04pnhmxr" path="res://components/healthcomponent.tscn" id="3_wegqf"]
-[ext_resource type="PackedScene" uid="uid://b4v5ystdpphvs" path="res://leveldesign/parts/spawndetector.tscn" id="4_kmrwq"]
+[ext_resource type="PackedScene" uid="uid://b4v5ystdpphvs" path="res://leveldesign/parts/tscns/spawndetector.tscn" id="4_kmrwq"]
 [ext_resource type="PackedScene" uid="uid://dxardsgqose0l" path="res://player/attack/bow.tscn" id="6_uha35"]
 
 [sub_resource type="Animation" id="Animation_mx82t"]
