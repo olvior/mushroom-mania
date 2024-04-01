@@ -55,14 +55,12 @@ func _on_area_entered(area):
 	if invincibility_timer.time_left == 0:
 		var attacker
 		var damage_amount
-		var kbdir
-		
 		
 		if area is MeleeAttack:
 			attacker = area.attacker
 			damage_amount = area.damage
 		else:
-			attacker = area
+			attacker = area.get_parent()
 			damage_amount = 1
 		
 		if attacker == self.get_parent():
