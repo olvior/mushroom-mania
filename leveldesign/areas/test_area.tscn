@@ -60,7 +60,7 @@ shape = SubResource("RectangleShape2D_iciqi")
 position = Vector2(430, 169)
 boss_scene = ExtResource("5_ert3l")
 blockers = [NodePath("Blocker")]
-position_node = NodePath("Node2D")
+position_node = NodePath("Spawn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Room6/Boss spawner"]
 rotation = 0.800548
@@ -75,7 +75,7 @@ collision_shape = NodePath("CollisionShape2D")
 shape = SubResource("RectangleShape2D_huioq")
 debug_color = Color(0, 0, 0, 0.419608)
 
-[node name="Node2D" type="Node2D" parent="Room6/Boss spawner"]
+[node name="Spawn" type="Node2D" parent="Room6/Boss spawner"]
 position = Vector2(-580, 15)
 
 [node name="Room" parent="." node_paths=PackedStringArray("collision_shape") instance=ExtResource("3_ii1go")]
