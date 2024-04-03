@@ -95,7 +95,7 @@ mesh = SubResource("CapsuleMesh_e8x38")
 
 [node name="health" parent="." node_paths=PackedStringArray("parent") instance=ExtResource("3_ddmlh")]
 parent = NodePath("..")
-max_health = 250
+max_health = 35
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
