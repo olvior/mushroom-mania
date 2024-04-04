@@ -327,3 +327,13 @@ func create_attack():
 
 func on_melee_hit():
 	bow.reset_cooldown()
+
+func save():
+	var save_dict = {
+		"file_path" : get_scene_file_path(),
+		"scene_path" : get_tree().get_root().get_path_to(self),
+		"position.x" : position.x,
+		"position.y" : position.y
+	}
+	
+	return save_dict

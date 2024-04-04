@@ -24,25 +24,25 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 480
-theme_override_constants/margin_top = 270
-theme_override_constants/margin_right = 480
-theme_override_constants/margin_bottom = 270
+theme_override_constants/margin_left = 436
+theme_override_constants/margin_top = 245
+theme_override_constants/margin_right = 436
+theme_override_constants/margin_bottom = 245
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 46
+theme_override_font_sizes/font_size = 73
 text = "Game Paused"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 40
-theme_override_constants/margin_right = 40
+theme_override_constants/margin_left = 60
+theme_override_constants/margin_right = 60
 
 [node name="Continue" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2"]
 material = SubResource("ShaderMaterial_b4gvv")
@@ -53,10 +53,34 @@ text = "Continue"
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 40
-theme_override_constants/margin_right = 40
+theme_override_constants/margin_left = 60
+theme_override_constants/margin_right = 60
 
-[node name="Quit" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer"]
+[node name="Save" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer"]
+material = SubResource("ShaderMaterial_b4gvv")
+layout_mode = 2
+focus_mode = 0
+theme = ExtResource("2_21exs")
+text = "Save Game"
+
+[node name="MarginContainer4" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 60
+theme_override_constants/margin_right = 60
+
+[node name="Load" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer4"]
+material = SubResource("ShaderMaterial_b4gvv")
+layout_mode = 2
+focus_mode = 0
+theme = ExtResource("2_21exs")
+text = "Load Game"
+
+[node name="MarginContainer3" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 60
+theme_override_constants/margin_right = 60
+
+[node name="Quit" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer3"]
 material = SubResource("ShaderMaterial_b4gvv")
 layout_mode = 2
 focus_mode = 0
@@ -64,4 +88,6 @@ theme = ExtResource("2_21exs")
 text = "Exit Game"
 
 [connection signal="button_up" from="MarginContainer/VBoxContainer/MarginContainer2/Continue" to="." method="_on_continue_button_up"]
-[connection signal="button_up" from="MarginContainer/VBoxContainer/MarginContainer/Quit" to="." method="_on_quit_button_up"]
+[connection signal="button_up" from="MarginContainer/VBoxContainer/MarginContainer/Save" to="." method="_on_save_button_up"]
+[connection signal="button_up" from="MarginContainer/VBoxContainer/MarginContainer4/Load" to="." method="_on_load_button_up"]
+[connection signal="button_up" from="MarginContainer/VBoxContainer/MarginContainer3/Quit" to="." method="_on_quit_button_up"]

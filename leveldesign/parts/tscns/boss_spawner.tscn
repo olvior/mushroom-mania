@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://leveldesign/parts/scripts/boss_spawner.gd" id="1_nbec0"]
 
-[node name="Area2D" type="Area2D"]
+[node name="Area2D" type="Area2D" groups=["for_save"]]
 collision_layer = 0
 collision_mask = 64
 script = ExtResource("1_nbec0")

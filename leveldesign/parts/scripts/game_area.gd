@@ -10,4 +10,3 @@ func identify_exits():
 	for c in self.get_children():
 		if c is AreaExit:
 			exits[c.name_id] = c
-	
