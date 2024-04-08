@@ -35,3 +35,16 @@ func heal(raw_amount):
 
 func update_display():
 	parent.current_health = current_health
+
+func save():
+	var save_dict = {
+		"file_path" : get_scene_file_path(),
+		"scene_path" : get_tree().get_root().get_path_to(self),
+		"current_health" : current_health,
+		"max_health" : max_health
+	}
+	
+	return save_dict
+
+func on_load():
+	update_display()

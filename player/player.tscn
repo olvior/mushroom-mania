@@ -116,7 +116,7 @@ animation_player = NodePath("../AnimationPlayer")
 shape = SubResource("RectangleShape2D_xnne8")
 debug_color = Color(1, 0, 0, 0.388235)
 
-[node name="Health component" parent="." node_paths=PackedStringArray("parent") instance=ExtResource("3_wegqf")]
+[node name="Health component" parent="." node_paths=PackedStringArray("parent") groups=["for_save"] instance=ExtResource("3_wegqf")]
 parent = NodePath("..")
 max_health = 8
 display = true
