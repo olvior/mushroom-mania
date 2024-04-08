@@ -84,6 +84,10 @@ func load_save(file_path):
 		
 		else:
 			var node = get_tree().get_root().get_node(node_data["scene_path"])
+			
+			if node.has_method("on_load"):
+				node.call_deferred("on_load")
+			
 			var skip_next = false
 			for i in node_data.keys():
 				if skip_next:
