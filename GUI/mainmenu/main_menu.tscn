@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://cxxqmodp0e4b8"]
 
 [ext_resource type="Script" path="res://GUI/mainmenu/main_menu.gd" id="1_8gwmt"]
-[ext_resource type="PackedScene" uid="uid://cg2fmc0gpu7ih" path="res://leveldesign/areas/test.tscn" id="2_uc2q3"]
+[ext_resource type="PackedScene" uid="uid://cg2fmc0gpu7ih" path="res://leveldesign/areas/main_scene.tscn" id="2_uc2q3"]
 [ext_resource type="Shader" path="res://GUI/mainmenu/TITLE.gdshader" id="3_bw6cn"]
 [ext_resource type="Theme" uid="uid://c28mk6nbduqga" path="res://GUI/mainmenu/menutheme.tres" id="4_db078"]
 [ext_resource type="Shader" path="res://GUI/mainmenu/menu.gdshader" id="5_4mg3l"]
