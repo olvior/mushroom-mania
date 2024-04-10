@@ -7,7 +7,7 @@ func _on_new_game_button_up():
 	var main = main_scene.instantiate()
 	get_tree().get_root().add_child(main)
 	Global.main_scene = main
-	Global.start()
+	Global.start("main")
 	self.queue_free()
 
 
