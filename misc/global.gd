@@ -23,11 +23,11 @@ func save():
 	
 	return save_dict
 
-func start():
+func start(area_name):
 	player = player_scene.instantiate()
 	main_scene.add_child(player)
 	
-	var new_scene : GameArea = game_areas["main"].instantiate()
+	var new_scene : GameArea = game_areas[area_name].instantiate()
 	main_scene.add_child(new_scene)
 	current_area = new_scene
 
