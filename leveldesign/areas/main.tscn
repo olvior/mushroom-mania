@@ -34,7 +34,7 @@ size = Vector2(128, 67)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d4e03"]
 size = Vector2(32, 90)
 
-[node name="main" type="Node2D" node_paths=PackedStringArray("tilemap") groups=["areas"]]
+[node name="main_area" type="Node2D" node_paths=PackedStringArray("tilemap") groups=["areas"]]
 script = ExtResource("1_mmxf3")
 area_name = &"main"
 tilemap = NodePath("TileMap")
