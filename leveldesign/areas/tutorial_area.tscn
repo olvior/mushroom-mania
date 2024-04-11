@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://b6qasu7k0itej"]
+
+[node name="tutorial_area" type="Node2D" groups=["areas"]]

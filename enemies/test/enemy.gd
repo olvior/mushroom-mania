@@ -9,7 +9,7 @@ var block_size : int = Global.block_size # 32 right now
 
 @onready var player : CharacterBody2D = Global.player
 @onready var animation_player : AnimationPlayer = get_node("AnimationPlayer")
-@onready var tile_map : TileMap = get_parent().tilemap
+@onready var tile_map : TileMap = get_parent().get_parent().tilemap
 @onready var run_timer : Timer = get_node("Run")
 @onready var run_cooldown_timer : Timer = get_node("RunCooldown")
 
@@ -23,7 +23,7 @@ func on_hit():
 	run_cooldown_timer.start()
 
 func _physics_process(delta):
-	var diff = abs(player.position - self.position)
+	var diff = abs(player.get_global_position() - self.get_global_position())
 	
 	velocity.y += 600 * delta
 	
@@ -49,7 +49,7 @@ func _physics_process(delta):
 		max_speed = 7
 		
 		# direction_change_logic
-		var block_position = Vector2(floor(self.position.x / block_size + 0.5 * direction), floor(self.position.y / block_size))
+		var block_position = Vector2(floor(self.get_global_position().x / block_size + 0.5 * direction), floor(self.get_global_position().y / block_size))
 		# anything in layer 0 is a normal platform
 		var tile_data_under = tile_map.get_cell_tile_data(0, Vector2(block_position.x, block_position.y + 1))
 		var tile_data_lr = tile_map.get_cell_tile_data(0, Vector2(block_position.x, block_position.y))
