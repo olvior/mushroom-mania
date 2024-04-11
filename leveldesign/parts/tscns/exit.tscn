@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://leveldesign/parts/scripts/exit.gd" id="1_lxwiu"]
 
-[node name="exit" type="Area2D" groups=["exitd"]]
+[node name="exit" type="Area2D" groups=["exits"]]
 collision_layer = 32
 collision_mask = 0
 script = ExtResource("1_lxwiu")
