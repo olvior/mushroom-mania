@@ -1,10 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://dosujao4td2re"]
+[gd_scene load_steps=15 format=3 uid="uid://dosujao4td2re"]
 
 [ext_resource type="Script" path="res://leveldesign/parts/scripts/game_area.gd" id="1_mmxf3"]
 [ext_resource type="TileSet" uid="uid://bcvju3o4jb0f7" path="res://leveldesign/parts/tilesetguess.tres" id="2_v4pqd"]
 [ext_resource type="PackedScene" uid="uid://mhde166tqnkv" path="res://leveldesign/parts/tscns/room.tscn" id="3_igxcv"]
 [ext_resource type="PackedScene" uid="uid://cntyuqtcfn8vb" path="res://leveldesign/parts/tscns/spawnarea.tscn" id="4_1yr3q"]
-[ext_resource type="PackedScene" uid="uid://jadcj6b4c4ra" path="res://enemies/test/enemy.tscn" id="8_4bev2"]
 [ext_resource type="PackedScene" uid="uid://e0nl02o840n2" path="res://leveldesign/parts/tscns/exit.tscn" id="9_36dki"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8jsa4"]
@@ -131,15 +130,6 @@ debug_color = Color(0, 0.619608, 0.564706, 0.419608)
 
 [node name="Node2D" type="Node2D" parent="Room6/Spawn area2"]
 position = Vector2(0, 34)
-
-[node name="Enemt" parent="." instance=ExtResource("8_4bev2")]
-position = Vector2(-3479, -698)
-
-[node name="enemyr2" parent="." instance=ExtResource("8_4bev2")]
-position = Vector2(-1035, -485)
-
-[node name="enemyr3" parent="." instance=ExtResource("8_4bev2")]
-position = Vector2(-16, 33)
 
 [node name="exit_bl" parent="." node_paths=PackedStringArray("spawn_loc") instance=ExtResource("9_36dki")]
 position = Vector2(1488, 514)
