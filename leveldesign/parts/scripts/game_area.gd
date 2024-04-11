@@ -7,6 +7,6 @@ class_name GameArea
 var exits : Dictionary
 
 func identify_exits():
-	for c in self.get_children():
+	for c in get_tree().get_nodes_in_group("exits"):
 		if c is AreaExit:
 			exits[c.name_id] = c
