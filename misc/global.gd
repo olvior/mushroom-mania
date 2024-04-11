@@ -8,7 +8,8 @@ var player_scene = preload("res://player/player.tscn")
 var current_area : GameArea
 var game_areas = {
 	"main" : preload("res://leveldesign/areas/main.tscn"),
-	"test_area" : preload("res://leveldesign/areas/test_area.tscn")
+	"test_area" : preload("res://leveldesign/areas/test_area.tscn"),
+	"tutorial_area" : preload("res://leveldesign/areas/tutorial_area.tscn")
 }
 
 @onready var main_scene : Node2D
