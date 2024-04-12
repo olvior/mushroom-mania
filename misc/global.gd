@@ -35,6 +35,7 @@ func start(area_name):
 func change_area(exit : AreaExit):
 	current_area.queue_free()
 	var new_scene : GameArea = game_areas[exit.connects_to_area].instantiate()
+	main_scene.add_child(new_scene)
 	new_scene.identify_exits()
 	
 	main_scene.call_deferred("add_child", new_scene) 
