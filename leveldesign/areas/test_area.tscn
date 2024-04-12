@@ -62,7 +62,6 @@ shape = SubResource("RectangleShape2D_iciqi")
 [node name="Boss spawner" parent="Room6" node_paths=PackedStringArray("position_node") instance=ExtResource("4_ty4d2")]
 position = Vector2(430, 169)
 boss_scene = ExtResource("5_ert3l")
-blockers = [NodePath("Blocker")]
 position_node = NodePath("Spawn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Room6/Boss spawner"]

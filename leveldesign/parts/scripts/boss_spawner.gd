@@ -1,8 +1,8 @@
 extends Area2D
 
 @export var boss_scene : PackedScene
-@export var blockers : Array
 @export var position_node : Node2D
+var blockers : Array
 
 var used = false
 
@@ -13,8 +13,9 @@ func _on_body_entered(body):
 			used = true
 
 func _ready():
-	for i in range(len(blockers)):
-		blockers[i] = get_node(blockers[i])
+	for i in get_children():
+		if i.is_in_group("blockers"):
+			blockers.append(i)
 
 func spawn():
 	var new_boss = boss_scene.instantiate()
