@@ -4,6 +4,7 @@ extends Control
 var player : CharacterBody2D
 
 @onready var hboxcont : HBoxContainer = get_node("MargainContainer/MarginContainer/HBoxContainer")
+@onready var vignette : ColorRect = get_node("Vignette")
 
 @export_category("HUD Variables")
 @export var pause : PackedScene
@@ -18,6 +19,7 @@ var pause_menu
 var r : TextureRect
 
 var old_player_health : int
+
 
 func _process(_delta):
 	if Global.player:
@@ -34,9 +36,11 @@ func _process(_delta):
 		if get_tree().paused:
 			pause_menu = pause.instantiate()
 			Global.main_scene.get_node("CanvasLayer").add_child(pause_menu)
+			vignette.call_deferred("darken")
 		
 		else:
 			pause_menu.queue_free()
+			vignette.call_deferred("lighten")
 
 func update(h):
 	var rects = hboxcont.get_children()
