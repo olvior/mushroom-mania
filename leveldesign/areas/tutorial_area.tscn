@@ -60,7 +60,7 @@ shape = SubResource("RectangleShape2D_srv66")
 debug_color = Color(0.513726, 0.00392157, 0.772549, 0.419608)
 
 [node name="Node2D" type="Node2D" parent="Room4/exit"]
-position = Vector2(34, 34)
+position = Vector2(17, 66)
 
 [node name="Room3" parent="." node_paths=PackedStringArray("collision_shape") instance=ExtResource("2_6yccs")]
 position = Vector2(2720, -128)

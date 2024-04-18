@@ -139,7 +139,7 @@ connects_to_loc = &"top_left"
 spawn_loc = NodePath("Node2D")
 
 [node name="Node2D" type="Node2D" parent="exit_bl"]
-position = Vector2(-16, -2)
+position = Vector2(-17, 30)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="exit_bl"]
 shape = SubResource("RectangleShape2D_d4e03")

@@ -43,6 +43,7 @@ func change_area(exit):
 	current_area = new_scene
 	var new_exit = new_scene.exits[exit["connects_to_loc"]]
 	player.position = new_exit.spawn_loc.get_global_position()
+	player.position.y -= 32
 	new_scene.visible = true
 
 

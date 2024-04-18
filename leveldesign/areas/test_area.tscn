@@ -32,11 +32,11 @@ size = Vector2(1056, 2048)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o02jo"]
 size = Vector2(1024, 736)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_p8fhs"]
-size = Vector2(1344, 1216)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hffw8"]
 size = Vector2(32, 92.67)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p8fhs"]
+size = Vector2(1344, 1216)
 
 [node name="test_area" type="Node2D" node_paths=PackedStringArray("tilemap") groups=["areas"]]
 script = ExtResource("1_is61x")
@@ -101,7 +101,7 @@ shape = SubResource("RectangleShape2D_01gm8")
 debug_color = Color(0.513726, 0.00392157, 0.772549, 0.419608)
 
 [node name="spawn_location" type="Node2D" parent="Room/exit"]
-position = Vector2(-31, 16)
+position = Vector2(-11, 48)
 
 [node name="Room2" parent="." node_paths=PackedStringArray("collision_shape") instance=ExtResource("3_ii1go")]
 position = Vector2(-1344, -192)
@@ -130,6 +130,20 @@ pos = Vector2(-105, -70.5)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Room4"]
 shape = SubResource("RectangleShape2D_o02jo")
 
+[node name="top_left" parent="Room4" node_paths=PackedStringArray("spawn_loc") instance=ExtResource("4_pbupe")]
+position = Vector2(-528, 308)
+name_id = &"top_left"
+connects_to_area = &"main"
+connects_to_loc = &"exit_bl"
+spawn_loc = NodePath("spawn_loc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Room4/top_left"]
+shape = SubResource("RectangleShape2D_hffw8")
+debug_color = Color(0.513726, 0.00392157, 0.772549, 0.419608)
+
+[node name="spawn_loc" type="Node2D" parent="Room4/top_left"]
+position = Vector2(17, 28)
+
 [node name="Room5" parent="." node_paths=PackedStringArray("collision_shape") instance=ExtResource("3_ii1go")]
 position = Vector2(-1120, -2496)
 collision_shape = NodePath("CollisionShape2D")
@@ -138,17 +152,3 @@ pos = Vector2(-35, -78)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Room5"]
 shape = SubResource("RectangleShape2D_p8fhs")
-
-[node name="top_left" parent="." node_paths=PackedStringArray("spawn_loc") instance=ExtResource("4_pbupe")]
-position = Vector2(-3888, -1949)
-name_id = &"top_left"
-connects_to_area = &"main"
-connects_to_loc = &"exit_bl"
-spawn_loc = NodePath("spawn_loc")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="top_left"]
-shape = SubResource("RectangleShape2D_hffw8")
-debug_color = Color(0.513726, 0.00392157, 0.772549, 0.419608)
-
-[node name="spawn_loc" type="Node2D" parent="top_left"]
-position = Vector2(16, -3)
