@@ -32,17 +32,18 @@ func start(area_name):
 	main_scene.add_child(new_scene)
 	current_area = new_scene
 
-func change_area(exit : AreaExit):
+func change_area(exit):
+	current_area.visible = false
 	current_area.queue_free()
 	var new_scene : GameArea = game_areas[exit.connects_to_area].instantiate()
+	new_scene.visible = false
 	main_scene.add_child(new_scene)
 	new_scene.identify_exits()
 	
-	main_scene.call_deferred("add_child", new_scene) 
-	
 	current_area = new_scene
-	var new_exit : AreaExit = new_scene.exits[exit["connects_to_loc"]]
+	var new_exit = new_scene.exits[exit["connects_to_loc"]]
 	player.position = new_exit.spawn_loc.get_global_position()
+	new_scene.visible = true
 
 
 func save_game(file_path):
