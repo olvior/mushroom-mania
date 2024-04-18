@@ -32,10 +32,10 @@ func _process(_delta):
 	
 	if Input.is_action_just_pressed("escape"):
 		get_tree().paused = not get_tree().paused
-		
+	
 		if get_tree().paused:
 			pause_menu = pause.instantiate()
-			Global.main_scene.get_node("CanvasLayer").add_child(pause_menu)
+			self.add_child(pause_menu)
 			vignette.call_deferred("darken")
 		
 		else:

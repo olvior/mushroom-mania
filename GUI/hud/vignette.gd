@@ -1,7 +1,7 @@
 extends ColorRect
 
-var dark = 1
-var light = 0.2
+var dark = 1.0
+var light = 0.5
 
 func darken():
 	material.set_shader_parameter("menu", true)

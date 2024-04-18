@@ -1,6 +1,6 @@
 shader_type canvas_item;
 
-uniform float alpha = 0.2;
+uniform float alpha = 1;
 uniform bool menu = false;
 
 void fragment() {

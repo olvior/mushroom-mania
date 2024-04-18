@@ -5,6 +5,7 @@ func _on_quit_button_up():
 
 func _on_continue_button_up():
 	get_tree().paused = false
+	self.get_parent().vignette.lighten()
 	self.queue_free()
 
 func _on_save_button_up():
