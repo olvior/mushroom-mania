@@ -297,12 +297,9 @@ func _on_room_detector_area_entered(area):
 	if area is Room:
 		camera.set_limits(area)
 	
-	elif area is AreaExit:
-		print("bbb")
-		Global.change_area(area)
+	elif area.is_in_group("exits"):
+		Global.call_deferred("change_area", area)
 	
-	else:
-		print("ccc")
 
 func die():
 	print("ded")

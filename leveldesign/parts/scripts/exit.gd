@@ -1,5 +1,4 @@
 extends Area2D
-class_name AreaExit
 
 @export var name_id : StringName
 @export var connects_to_area : StringName
