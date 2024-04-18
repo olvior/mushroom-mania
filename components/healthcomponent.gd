@@ -10,6 +10,10 @@ class_name HealthComponent
 
 var protection = 1
 
+func _ready():
+	if display:
+		update_display()
+
 func damage(raw_amount):
 	current_health -= int(raw_amount / protection)
 	

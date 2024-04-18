@@ -52,7 +52,7 @@ var time = 0
 var time_started = false
 var old_speed = Vector2(12, 0)
 var magnitude = 1
-var current_health = 4
+var current_health = 8
 var max_health
 
 
