@@ -49,7 +49,7 @@ position = Vector2(-8, 309)
 position = Vector2(505, -134)
 
 [node name="exit" parent="Room4" node_paths=PackedStringArray("spawn_loc") instance=ExtResource("5_5sy4s")]
-position = Vector2(-767, -274)
+position = Vector2(-768, -274)
 name_id = &"tut_leave"
 connects_to_area = &"test_area"
 connects_to_loc = &"to_start"
@@ -60,7 +60,7 @@ shape = SubResource("RectangleShape2D_srv66")
 debug_color = Color(0.513726, 0.00392157, 0.772549, 0.419608)
 
 [node name="Node2D" type="Node2D" parent="Room4/exit"]
-position = Vector2(16, 34)
+position = Vector2(34, 34)
 
 [node name="Room3" parent="." node_paths=PackedStringArray("collision_shape") instance=ExtResource("2_6yccs")]
 position = Vector2(2720, -128)
