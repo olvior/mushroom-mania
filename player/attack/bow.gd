@@ -46,6 +46,7 @@ func apply_kb():
 
 func create_arrow():
 	var new_arrow : Arrow = arrow_scene.instantiate()
+	new_arrow.velocity = Global.player.velocity
 	new_arrow.velocity = diff.normalized() * 30
 	new_arrow.rotation = diff.angle()
 	new_arrow.position = self.get_global_position() + diff.normalized() * 48 

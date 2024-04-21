@@ -36,7 +36,7 @@ func _enter_tree() -> void:
 func _notification(what: int) -> void:
 	if Engine.is_editor_hint():
 		if what == NOTIFICATION_TRANSFORM_CHANGED:
-			if not (fmod(position.x, block_size / 2) == 0 and fmod(position.y, block_size / 2) == 0):
+			if not (fmod(position.x, block_size / 2.0) == 0 and fmod(position.y, block_size / 2.0) == 0):
 				pos = position / (block_size)
 				pos.x = int(floor(pos.x))
 				pos.y = int(floor(pos.y))
