@@ -65,9 +65,9 @@ func load_save(file_path):
 		return
 	
 	var first = true
-	var save_game = FileAccess.open(path, FileAccess.READ)
-	while save_game.get_position() < save_game.get_length():
-		var json_string = save_game.get_line()
+	var save_file = FileAccess.open(path, FileAccess.READ)
+	while save_file.get_position() < save_file.get_length():
+		var json_string = save_file.get_line()
 		var json = JSON.new()
 		
 		var parse_result = json.parse(json_string)
