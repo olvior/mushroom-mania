@@ -8,7 +8,7 @@ size = Vector3(16, 2, 1)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_krure"]
 size = Vector2(16, 2)
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
+[node name="Arrow" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 65
 script = ExtResource("1_hxt54")

@@ -25,8 +25,8 @@ func _process(_delta):
 		else:
 			sprite.texture = without_arrow
 			cooldown.start()
-			apply_kb()
 			create_arrow()
+			apply_kb()
 
 func reset_cooldown():
 	_on_cooldown_timeout()
@@ -34,7 +34,6 @@ func reset_cooldown():
 
 func _on_cooldown_timeout():
 	sprite.texture = with_arrow
-
 
 func apply_kb():
 	var kb = diff.normalized() * 250
@@ -46,12 +45,14 @@ func apply_kb():
 
 func create_arrow():
 	var new_arrow : Arrow = arrow_scene.instantiate()
-	new_arrow.velocity = Global.player.velocity
-	new_arrow.velocity = diff.normalized() * 30
+	print(new_arrow.velocity)
+	new_arrow.velocity = Global.player.velocity / 10
+	print(Global.player.velocity)
+	new_arrow.velocity += diff.normalized() * 1800 #30*60 cause of delta
 	new_arrow.rotation = diff.angle()
 	new_arrow.position = self.get_global_position() + diff.normalized() * 48 
 	
 	new_arrow.setup(5, self.get_parent(), 100)
 	
-	Global.current_area.add_child(new_arrow)
+	Global.main_scene.call_deferred("add_child", new_arrow)
 

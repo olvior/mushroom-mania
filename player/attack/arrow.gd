@@ -1,7 +1,6 @@
 extends CharacterBody2D
 class_name Arrow
 
-
 var collision : KinematicCollision2D
 @onready var collision_box : CollisionShape2D = get_node("CollisionShape2D")
 
@@ -17,11 +16,11 @@ func setup(damagel : int, attackerl : CharacterBody2D, kb_strengthl : float):
 
 func _physics_process(delta):
 	velocity /= 1.02
-	velocity.y += 10 * delta
+	velocity.y += 600 * delta
 	self.rotation = velocity.angle()
 	kb_direction = velocity.normalized()
 	
-	collision = move_and_collide(velocity)
+	collision = move_and_collide(velocity * delta)
 	
 	if collision:
 		if collision.get_collider() is TileMap:
