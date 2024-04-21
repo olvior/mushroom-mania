@@ -7,13 +7,9 @@ var direction = 0
 
 #jumping
 var jump_power = 565
-var max_jumps = 1
-var jumps = max_jumps
 var gravity_up = 1100
 var gravity_down = 1250
-var y_floor = 0
 var cancel_jump = false
-var has_fallen = false
 var terminal_velocity = 700
 
 #dashing
@@ -45,16 +41,14 @@ var buffer_dict_run = {
 
 #coyote
 var was_on_floor = false
+var was_floor_ypos : float = 0.0
 @onready var wall_coyote_timer : Timer = get_node("Wall coyote timer")
 
 #other
 var time = 0
-var time_started = false
-var old_speed = Vector2(12, 0)
 var magnitude = 1
 var current_health = 8
 var max_health
-
 
 # melee attack
 var melee_damage : int = 5
@@ -82,20 +76,6 @@ var attack_scene = preload("res://player/attack/player_attack.tscn")
 
 @onready var spawn_detector : SpawnDetector = get_node("Spawn detector")
 
-func floor_check():
-	if is_on_floor():
-		jumps = max_jumps
-		y_floor = self.position.y
-		has_fallen = false
-		
-		if abs(velocity.x) > max_speed:
-			velocity.x /= 1.05
-		
-	if not is_on_floor():
-		if not has_fallen and y_floor < self.position.y and not on_wall:
-			has_fallen = true
-			coyote_timer.start()
-
 func gravity(delta):
 	if velocity.y > 0:
 		velocity.y += gravity_down * delta
@@ -111,27 +91,20 @@ func jump_canceling():
 		cancel_jump = false
 
 func jump():
-	if has_fallen and jumps > 0 or coyote_timer.time_left > 0:
-		jumps -= 1
-		has_fallen = false
-	if jumps > 0 or coyote_timer.time_left > 0:
-			velocity.y = -jump_power
-			time = 0
-			jumps -= 1
-
-func check_jump():
-	return jumps >= 1 or on_wall
+	velocity.y = -jump_power
+	time = 0
 
 func jump_b():
-	if on_wall:
+	if c_is_on_wall_only():
 		wall_jump(-1 if wall_cast_left.is_colliding() else 1)
 	else:
 		jump()
 
-func walking(delta):
-	direction = Input.get_axis("left", "right")
-	if velocity.x * direction < max_speed:
-		velocity.x += direction * max_speed * accel * delta
+func c_is_on_wall_only():
+	return (wall_cast_left.is_colliding() or wall_cast_right.is_colliding()) and not is_on_floor()
+
+func check_jump():
+	return is_on_floor() or c_is_on_wall_only()
 
 func dash():
 	var left_right = Input.get_axis("left", "right")
@@ -148,7 +121,6 @@ func dash():
 		dashing_timer.start()
 		can_dash = false
 		dashing = true
-
 
 func keep_dash():
 	if dash_direction.x:
@@ -167,29 +139,13 @@ func _on_dash_timer_timeout():
 func check_dash():
 	return can_dash
 
-func slow_down():
-	if not time_started: # initial config
-		time = 0
-		time_started = true
-		old_speed = velocity
-		magnitude = velocity.x / abs(velocity.x)
-	
-	# equation I found to slow down nicely
-	velocity.x = (abs(old_speed.x) - (3 * (time + 1.5)) * (3 * (time + 1.5))) * magnitude
-	if velocity.x * magnitude < 0:
-		velocity.x = 0
-		time_started = false
-
-func wall_hold():
-	if velocity.y > wall_terminal_velocity:
-		velocity.y = wall_terminal_velocity
-
 func wall_jump(dir):
+	print("ab")
+	print(dir, "wall	")
 	velocity.y = -jump_power
 	velocity.x = dir * wall_jump_side_force
 	time = 0
 	
-	# had glitch where on some wall-jumps the dash wouldn't come back
 	can_dash = true
 
 func check_buffer():
@@ -207,14 +163,24 @@ func check_buffer():
 			if (buffer_timer) > (time + buffer_time):
 				buffer.remove_at(buffer.find(b))
 
-func is_touching_wall():
-	return (wall_cast_left.is_colliding() or wall_cast_right.is_colliding()) and not is_on_floor()
-
 func check_can_dash():
 	return true if (is_on_floor() or on_wall) and dash_refreshed else can_dash
 
 func _physics_process(delta):
 	time += delta
+	direction = Input.get_axis("left", "right")
+	
+	if is_on_floor() and abs(velocity.x) > max_speed:
+		velocity.x /= 1.05
+	
+	if not direction:
+		if abs(velocity.x) > 0:
+			velocity.x /= 1.2
+			velocity.x -= 5 * (velocity.x) / abs(velocity.x)
+		
+		if abs(velocity.x) < 5:
+			velocity.x = 0
+			
 	
 	last_direction = direction if direction != 0 else last_direction
 	
@@ -226,20 +192,23 @@ func _physics_process(delta):
 			create_attack()
 			attack_cooldown.start()
 	
-	#basic tests
+	#walking
+	if velocity.x * direction < max_speed:
+		velocity.x += direction * max_speed * accel * delta
 	
-	if was_on_wall:
-		coyote_timer.start()
 	
-	on_wall = is_touching_wall()
-	was_on_wall = on_wall
+	if was_on_wall and not c_is_on_wall_only(): #if was on wall
+		wall_coyote_timer.start()
+	
+	if was_on_floor and not is_on_floor():
+		print("not on floor anymore")
+		if position.y > was_floor_ypos:
+			coyote_timer.start()
+	
+	was_on_wall = c_is_on_wall_only()
+	
 	can_dash = check_can_dash()
-	if on_wall:
-		jumps = max_jumps - 1
-		magnitude = int(not (Input.is_action_pressed("left") == Input.is_action_pressed("right")))
-		magnitude *= -1 if Input.is_action_pressed("left") else 1
 	
-	floor_check()
 	if not is_on_floor():
 		gravity(delta)
 	
@@ -253,39 +222,37 @@ func _physics_process(delta):
 	
 	check_buffer()
 	
+	if c_is_on_wall_only():
+		if direction:
+			velocity.y = min(wall_terminal_velocity, velocity.y)
+
+	
 	#jump stuff
 	if cancel_jump:
 		jump_canceling()
-	if Input.is_action_just_pressed("jump") and not on_wall:
-		if jumps >= 1 or coyote_timer.time_left > 0:
+	if Input.is_action_just_pressed("jump"):
+		if is_on_floor() or coyote_timer.time_left > 0:
 			jump()
-	if Input.is_action_just_pressed("jump") and on_wall or wall_coyote_timer.time_left:
-		wall_jump(-1 if wall_cast_left.is_colliding() else 1)
-	elif Input.is_action_just_released("jump"):
+		elif c_is_on_wall_only() or wall_coyote_timer.time_left:
+			var wall_jump_direction = 1
+			if wall_cast_left.is_colliding():
+				wall_jump_direction = -1
+			print("aa")
+			wall_jump(wall_jump_direction)
+			print("bb")
+	
+	if Input.is_action_just_released("jump"):
 		cancel_jump = true
 	
-	if Input.is_action_just_pressed("dash"):
-		if can_dash:
-			dash()
-
-		print(is_on_floor() or on_wall, can_dash)
-	
-	walking(delta)
+	if Input.is_action_just_pressed("dash") and can_dash:
+		dash()
 	
 	if dashing:
 		keep_dash()
 	
-	if on_wall:
-		if magnitude != 0:
-			wall_hold()
-	
-	if not direction and old_speed.x == velocity.x and not velocity.x == 0:
-		slow_down()
-	else:
-		time_started = false
-	
-	
-	old_speed = velocity
+	was_on_floor = is_on_floor()
+	if is_on_floor():
+		was_floor_ypos = position.y
 	time += delta
 	buffer_timer += delta
 	
@@ -293,20 +260,19 @@ func _physics_process(delta):
 	debug_label.text = str(velocity)
 
 
+##################################################################
 func _on_room_detector_area_entered(area):
 	if area is Room:
 		camera.set_limits(area)
 	
 	elif area.is_in_group("exits"):
 		Global.call_deferred("change_area", area)
-	
 
 func die():
 	print("ded")
 
 func static_damage():
 	spawn_detector.go_to_pos()
-
 
 func create_attack():
 	var new_attack : MeleeAttack = attack_scene.instantiate()
